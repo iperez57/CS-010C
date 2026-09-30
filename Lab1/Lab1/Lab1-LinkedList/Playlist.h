@@ -10,7 +10,7 @@ class PlaylistNode
 {
 public:
 	PlaylistNode();
-	PlaylistNode(string uniqueID, string songName, string artistName, int songLength);
+	PlaylistNode(string uniqueID, string songName, string artistName, int songLength, PlaylistNode* nextNodePtr = nullptr);
 	void InsertAfter(PlaylistNode node);
 	void SetNext(PlaylistNode node);
 	string GetID();

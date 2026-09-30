@@ -8,16 +8,16 @@ PlaylistNode::PlaylistNode()
 	songName = "none";
 	artistName = "none";
 	songLength = 0;
-	nextNodePtr = 0;
+	nextNodePtr = nullptr;
 }
 
-PlaylistNode::PlaylistNode(string uID, string sName, string aName, int sLength)
+PlaylistNode::PlaylistNode(string uID, string sName, string aName, int sLength, PlaylistNode* nPtr = nullptr)
 {
 	uniqueID = uID;
 	songName = sName;
 	artistName = aName;
 	songLength = sLength;
-	nextNodePtr = 0;
+	this->nextNodePtr = nPtr;
 }
 
 string PlaylistNode::GetArtistName()
