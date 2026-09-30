@@ -354,6 +354,23 @@ int main()
 			}
 			break;
 		}
+		case 't':
+		{
+			int seconds = 0;
+			PlaylistNode* current = head;
+
+			cout << endl;
+			cout << "OUTPUT TOTAL TIME OF PLAYLIST (IN SECONDS)" << endl;
+			
+			while (current != nullptr)
+			{
+				seconds += current->GetSongLength();
+				current = current->GetNext();
+			}
+
+			cout << "Total time: " << seconds << " seconds" << endl;
+		}
+		break;
 		case 'o':
 		{
 			cout << endl;
