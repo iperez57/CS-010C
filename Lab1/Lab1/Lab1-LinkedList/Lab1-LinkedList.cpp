@@ -163,8 +163,8 @@ int main()
 {
 	string playlistTitle;
 	char option;
-	PlaylistNode* head = 0;
-	PlaylistNode* tail = 0;
+	PlaylistNode* head = nullptr;
+	PlaylistNode* tail = nullptr;
 
 	cout << "Enter playlist's title:" << endl;
 	getline(cin, playlistTitle);
@@ -173,30 +173,66 @@ int main()
 	{
 		PrintMenu(playlistTitle);
 		cin >> option;
-		switch(option)
-			case 'o':
-				cout << playlistTitle << " - OUTPUT FULL PLAYLIST" << endl;
-				if (head == 0)
+		switch (option)
+		{
+		case 'a':
+		{
+			string id;
+			string sName;
+			string aName;
+			int length;
+
+			cout << "ADD SONG" << endl;
+			cout << "Enter song's unique ID:" << endl;
+			cin >> id;
+			cout << "Enter song's name:" << endl;
+			cin.ignore();
+			getline(cin, sName);
+			cout << "Enter artist's name:" << endl;
+			cin.ignore();
+			getline(cin, aName);
+			cout << "Enter song's length (in seconds):" << endl;
+			cin >> length;
+
+			PlaylistNode* newNode = new PlaylistNode(id, sName, aName, length);
+
+			if (head == 0)
+			{
+				head = newNode;
+				tail = newNode;
+			}
+			else
+			{
+				tail->SetNext(newNode);
+				tail = newNode;
+			}
+
+			break;
+		}
+		case 'o':
+			cout << playlistTitle << " - OUTPUT FULL PLAYLIST" << endl;
+			if (head == 0)
+			{
+				cout << "Playlist is empty" << endl;
+			}
+			else
+			{
+				PlaylistNode* current = head;
+				int position = 1;
+
+				while (current != nullptr)
 				{
-					cout << "Playlist is empty" << endl;
+					cout << position << "." << endl;
+					current->PrintPlaylistNode();
+					cout << endl;
+
+					current = current->GetNext();
+					position++;
+
 				}
-				else
-				{
-					PlaylistNode* current = head;
-					int position = 1;
-
-					while (current != 0)
-					{
-						cout << position << "." << endl;
-						current->PrintPlaylistNode();
-						cout << endl;
-
-						current = current->GetNext();
-						position++;
-
-					}
-				}
-				break;
+			}
+			break;
+		}
 	} while (option != 'q');
 
 	return 0;
