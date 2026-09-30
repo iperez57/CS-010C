@@ -20,6 +20,28 @@ PlaylistNode::PlaylistNode(string uID, string sName, string aName, int sLength)
 	nextNodePtr = 0;
 }
 
+string PlaylistNode::GetArtistName()
+{
+	return artistName;
+}
+string PlaylistNode::GetID()
+{
+	return uniqueID;
+}
+string PlaylistNode::GetSongName()
+{
+	return songName;
+}
+int PlaylistNode::GetSongLength()
+{
+	return songLength;
+}
+PlaylistNode* PlaylistNode::GetNext()
+{
+	return nextNodePtr;
+}
+
+
 void PlaylistNode::PrintPlaylistNode()
 {
 	cout << "Unique ID: " << GetID() << endl;
