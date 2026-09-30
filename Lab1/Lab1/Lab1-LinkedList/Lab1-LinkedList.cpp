@@ -323,6 +323,37 @@ int main()
 
 		}
 			break;
+		case 's':
+		{
+			string name;
+			int counter = 1;
+			PlaylistNode* current = head;
+
+			cout << endl;
+			cout << "OUTPUT SONGS BY SPECIFIC ARTIST" << endl;
+			cout << "Enter artist's name:" << endl;
+			cin >> name;
+
+			while (current != nullptr)
+			{
+				if (current->GetArtistName() == name)
+				{
+					cout << counter << "." << endl;
+					cout << "Unique ID: " << current->GetID() << endl;
+					cout << "Song Name: " << current->GetArtistName() << endl;
+					cout << "Song Length (in seconds): " << current->GetSongLength() << endl;
+					cout << endl;
+					current = current->GetNext();
+					counter++;
+				}
+				else
+				{
+					counter++;
+					current = current->GetNext();
+				}
+			}
+			break;
+		}
 		case 'o':
 		{
 			cout << endl;
