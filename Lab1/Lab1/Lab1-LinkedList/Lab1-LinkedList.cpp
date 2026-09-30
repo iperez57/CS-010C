@@ -182,6 +182,7 @@ int main()
 			string aName;
 			int length;
 
+			cout << endl;
 			cout << "ADD SONG" << endl;
 			cout << "Enter song's unique ID:" << endl;
 			cin >> id;
@@ -213,6 +214,7 @@ int main()
 		{
 			string input;
 			PlaylistNode* current = head;
+			cout << endl;
 			cout << "REMOVE SONG" << endl;
 			cout << "Enter song's unique ID:" << endl;
 			cin >> input;
@@ -247,6 +249,7 @@ int main()
 			break;
 		}
 		case 'o':
+			cout << endl;
 			cout << playlistTitle << " - OUTPUT FULL PLAYLIST" << endl;
 			if (head == 0)
 			{
@@ -277,6 +280,7 @@ int main()
 
 void PrintMenu(string name)
 {
+	cout << endl;
 	cout << name << " PLAYLIST MENU" << endl;
 	cout << "a - Add song" << endl;
 	cout << "d - Remove song" << endl;
