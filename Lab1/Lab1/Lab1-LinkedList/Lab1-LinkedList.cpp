@@ -280,6 +280,7 @@ int main()
 
 			if (end < 1)
 			{
+				end = 1;
 				if (curr == 1)
 				{
 				}
@@ -292,9 +293,12 @@ int main()
 			}
 			else if (end > nodeCounter)
 			{
+				end = nodeCounter;
 
 				if (curr == 1)
 				{
+					temp = current->GetNext();
+					temp->SetNext(current);
 					head = current->GetNext();
 					tail->SetNext(current);
 					current->SetNext(nullptr);
@@ -303,17 +307,19 @@ int main()
 				else
 				{
 					PlaylistNode* tailTemp = head;
+
 					while (tailTemp->GetNext() != nullptr)
 					{
 						tailTemp = tailTemp->GetNext();
 					}
-					temp->SetNext(temp->GetNext()->GetNext());
+					temp->SetNext(current->GetNext());
 					tailTemp->SetNext(current);
 					current->SetNext(nullptr);
 					tail = current;
 
 				}
 			}
+			cout << " " << current->GetSongName() << " moved to position " << end << endl;
 
 		}
 			break;
