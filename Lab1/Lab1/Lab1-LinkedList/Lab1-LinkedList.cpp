@@ -153,3 +153,64 @@ Total time: 1461 seconds
 Note: Submitting code with syntax errors (or infinite loops) may result in blank feedback when submitting. 
 It is advised that you run your code when making each major change to identify syntax errors/broken code more quickly.
 */
+
+#include "Playlist.h";
+#include <string>
+
+void PrintMenu(string name);
+
+int main()
+{
+	string playlistTitle;
+	char option;
+	PlaylistNode* head = 0;
+	PlaylistNode* tail = 0;
+
+	cout << "Enter playlist's title:" << endl;
+	getline(cin, playlistTitle);
+
+	do
+	{
+		PrintMenu(playlistTitle);
+		cin >> option;
+		switch(option)
+			case 'o':
+				cout << playlistTitle << " - OUTPUT FULL PLAYLIST" << endl;
+				if (head == 0)
+				{
+					cout << "Playlist is empty" << endl;
+				}
+				else
+				{
+					PlaylistNode* current = head;
+					int position = 1;
+
+					while (current != 0)
+					{
+						cout << position << "." << endl;
+						current->PrintPlaylistNode();
+						cout << endl;
+
+						current = current->GetNext();
+						position++;
+
+					}
+				}
+				break;
+	} while (option != 'q');
+
+	return 0;
+}
+
+void PrintMenu(string name)
+{
+	cout << name << " PLAYLIST MENU" << endl;
+	cout << "a - Add song" << endl;
+	cout << "d - Remove song" << endl;
+	cout << "c - Change position of song" << endl;
+	cout << "s - Output songs by specific artist" << endl;
+	cout << "t - Output total time of playlist (in seconds)" << endl;
+	cout << "o - Output full playlist" << endl;
+	cout << "q - Quit" << endl;
+	cout << "Choose an option:" << endl;
+}
