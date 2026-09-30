@@ -209,6 +209,43 @@ int main()
 
 			break;
 		}
+		case 'd':
+		{
+			string input;
+			PlaylistNode* current = head;
+			cout << "REMOVE SONG" << endl;
+			cout << "Enter song's unique ID:" << endl;
+			cin >> input;
+			if (current->GetID() == input)
+			{
+				cout << " " << current->GetSongName() << " removed" << endl;
+				head = current->GetNext();
+				delete current;
+				current = head;
+			}
+			else
+			{
+				PlaylistNode* temp = current;
+				current = current->GetNext();
+				while (current != nullptr)
+				{
+					if (current->GetID() == input)
+					{
+						cout << " " << current->GetSongName() << " removed" << endl;
+						temp->SetNext(temp->GetNext()->GetNext());
+						delete current;
+						current = temp->GetNext();
+					}
+					else
+					{
+						temp = current;
+						current = current->GetNext();
+
+					}
+				}
+			}
+			break;
+		}
 		case 'o':
 			cout << playlistTitle << " - OUTPUT FULL PLAYLIST" << endl;
 			if (head == 0)
