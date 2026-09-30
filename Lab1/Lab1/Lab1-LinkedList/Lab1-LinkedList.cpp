@@ -161,6 +161,7 @@ void PrintMenu(string name);
 void addSong(PlaylistNode* head, PlaylistNode* tail);
 void removeSong(PlaylistNode* head);
 void outputPlaylist(PlaylistNode* head,string playlistTitle);
+void changePosition(PlaylistNode* head, PlaylistNode* tail);
 
 int main()
 {
@@ -179,15 +180,14 @@ int main()
 		switch (option)
 		{
 		case 'a':
-		{
 			addSong(head, tail);
 			break;
-		}
 		case 'd':
-		{
 			removeSong(head);
 			break;
-		}
+		case 'c':
+			changePosition(head, tail);
+			break;
 		case 'o':
 			outputPlaylist(head, playlistTitle);
 			break;
@@ -308,4 +308,44 @@ void outputPlaylist(PlaylistNode* head, string playlistTitle)
 
 		}
 	}
+}
+
+void changePosition(PlaylistNode* head, PlaylistNode* tail)
+{
+	int curr;
+	int end;
+	int nodeCounter = 0;
+	int position = 1;
+	PlaylistNode* current = head;
+	PlaylistNode* temp;
+
+	cout << endl;
+	cout << "CHANGE POSITION OF SONG" << endl;
+	cout << "Enter song's current position:" << endl;
+	cin >> curr;
+	cout << "Enter new position for song:" << endl;
+	cin >> end;
+
+	while (current != nullptr)
+	{
+		nodeCounter++;
+		current = current->GetNext();
+	}
+
+	current = head;
+
+	while (position != curr)
+	{
+		temp = current;
+		current = current->GetNext();
+		position++;
+	}
+
+	if (end < 1)
+	{
+		temp->SetNext(temp->GetNext()->GetNext());
+		current->SetNext(head);
+		head = current;
+	}
+
 }
