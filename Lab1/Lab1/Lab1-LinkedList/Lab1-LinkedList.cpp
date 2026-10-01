@@ -301,6 +301,7 @@ int main()
 					temp->SetNext(current);
 					head = current->GetNext();
 					tail->SetNext(current);
+					head->InsertAfter(current);
 					current->SetNext(nullptr);
 					tail = current;
 				}
@@ -313,9 +314,46 @@ int main()
 						tailTemp = tailTemp->GetNext();
 					}
 					temp->SetNext(current->GetNext());
-					tailTemp->SetNext(current);
+					tailTemp->InsertAfter(current);
 					current->SetNext(nullptr);
 					tail = current;
+
+				}
+			}
+			else
+			{
+				if (curr == end)
+				{
+
+				}
+				else
+				{
+					if (curr == 1)
+					{
+						head = current->GetNext();
+					}
+
+					else
+					{
+						temp->SetNext(current->GetNext());
+					}
+
+					if (end == 1)
+					{
+						current->SetNext(head);
+						head = current;
+					}
+					else
+					{
+
+						PlaylistNode* insert = head;
+
+						for (int i = 1; i < end - 1; i++)
+						{
+							insert = insert->GetNext();
+						}
+						insert->InsertAfter(current);
+					}
 
 				}
 			}
@@ -413,6 +451,6 @@ void PrintMenu(string name)
 	cout << "s - Output songs by specific artist" << endl;
 	cout << "t - Output total time of playlist (in seconds)" << endl;
 	cout << "o - Output full playlist" << endl;
-	cout << "q - Quit" << endl;
+	cout << "q - Quit" << endl << endl;
 	cout << "Choose an option:" << endl;
 }

@@ -19,7 +19,11 @@ PlaylistNode::PlaylistNode(string uID, string sName, string aName, int sLength)
 	songLength = sLength;
 	nextNodePtr = nullptr;
 }
-
+void PlaylistNode::InsertAfter(PlaylistNode* node)
+{
+	node->SetNext(this->GetNext());
+	this->SetNext(node);
+}
 void PlaylistNode::SetNext(PlaylistNode* node)
 {
 	nextNodePtr = node;
