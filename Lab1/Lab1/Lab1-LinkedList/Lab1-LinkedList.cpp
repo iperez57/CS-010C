@@ -168,6 +168,7 @@ int main()
 
 	cout << "Enter playlist's title:" << endl;
 	getline(cin, playlistTitle);
+	cout << endl;
 
 	do
 	{
@@ -193,6 +194,7 @@ int main()
 			getline(cin, aName);
 			cout << "Enter song's length (in seconds):" << endl;
 			cin >> length;
+			cout << endl;
 
 			PlaylistNode* newNode = new PlaylistNode(id, sName, aName, length);
 
@@ -212,13 +214,12 @@ int main()
 		{
 			string input;
 			PlaylistNode* current = head;
-			cout << endl;
 			cout << "REMOVE SONG" << endl;
 			cout << "Enter song's unique ID:" << endl;
 			cin >> input;
 			if (current->GetID() == input)
 			{
-				cout << " " << current->GetSongName() << " removed" << endl;
+				cout << "\"" << current->GetSongName() << "\" removed" << endl << endl;
 				head = current->GetNext();
 				delete current;
 				current = head;
@@ -231,7 +232,7 @@ int main()
 				{
 					if (current->GetID() == input)
 					{
-						cout << " " << current->GetSongName() << " removed" << endl;
+						cout << "\"" << current->GetSongName() << "\" removed" << endl << endl;
 						temp->SetNext(temp->GetNext()->GetNext());
 						delete current;
 						current = temp->GetNext();
@@ -307,14 +308,8 @@ int main()
 				}
 				else
 				{
-					PlaylistNode* tailTemp = head;
-
-					while (tailTemp->GetNext() != nullptr)
-					{
-						tailTemp = tailTemp->GetNext();
-					}
 					temp->SetNext(current->GetNext());
-					tailTemp->InsertAfter(current);
+					tail->SetNext(current);
 					current->SetNext(nullptr);
 					tail = current;
 
@@ -357,7 +352,7 @@ int main()
 
 				}
 			}
-			cout << " " << current->GetSongName() << " moved to position " << end << endl;
+			cout << "\"" << current->GetSongName() << "\" moved to position " << end << endl << endl;
 
 		}
 			break;
@@ -369,8 +364,10 @@ int main()
 
 			cout << endl;
 			cout << "OUTPUT SONGS BY SPECIFIC ARTIST" << endl;
-			cout << "Enter artist's name:" << endl;
-			cin >> name;
+			cout << "Enter artist's name:" << endl << endl;
+			cin.ignore();
+			getline(cin, name);
+
 
 			while (current != nullptr)
 			{
@@ -378,9 +375,9 @@ int main()
 				{
 					cout << counter << "." << endl;
 					cout << "Unique ID: " << current->GetID() << endl;
-					cout << "Song Name: " << current->GetArtistName() << endl;
-					cout << "Song Length (in seconds): " << current->GetSongLength() << endl;
-					cout << endl;
+					cout << "Song Name: " << current->GetSongName() << endl;
+					cout << "Artist Name: " << current->GetArtistName() << endl;
+					cout << "Song Length (in seconds): " << current->GetSongLength() << endl << endl;
 					current = current->GetNext();
 					counter++;
 				}
@@ -397,7 +394,6 @@ int main()
 			int seconds = 0;
 			PlaylistNode* current = head;
 
-			cout << endl;
 			cout << "OUTPUT TOTAL TIME OF PLAYLIST (IN SECONDS)" << endl;
 			
 			while (current != nullptr)
@@ -406,16 +402,15 @@ int main()
 				current = current->GetNext();
 			}
 
-			cout << "Total time: " << seconds << " seconds" << endl;
+			cout << "Total time: " << seconds << " seconds" << endl << endl;
 		}
 		break;
 		case 'o':
 		{
-			cout << endl;
 			cout << playlistTitle << " - OUTPUT FULL PLAYLIST" << endl;
 			if (head == 0)
 			{
-				cout << "Playlist is empty" << endl;
+				cout << "Playlist is empty" << endl << endl;
 			}
 			else
 			{
@@ -426,7 +421,6 @@ int main()
 				{
 					cout << position << "." << endl;
 					current->PrintPlaylistNode();
-					cout << endl;
 
 					current = current->GetNext();
 					position++;
@@ -443,7 +437,6 @@ int main()
 
 void PrintMenu(string name)
 {
-	cout << endl;
 	cout << name << " PLAYLIST MENU" << endl;
 	cout << "a - Add song" << endl;
 	cout << "d - Remove song" << endl;

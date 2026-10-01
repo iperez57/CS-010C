@@ -56,5 +56,5 @@ void PlaylistNode::PrintPlaylistNode()
 	cout << "Unique ID: " << GetID() << endl;
 	cout << "Song Name: " << GetSongName() << endl;
 	cout << "Artist Name: " << GetArtistName() << endl;
-	cout << "Song Length (in seconds): " << GetSongLength() << endl;
+	cout << "Song Length (in seconds): " << GetSongLength() << endl << endl;
 }
