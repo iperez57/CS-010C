@@ -26,7 +26,10 @@ public:
     void pop_front();
     void push_back(int value);
     void pop_back();
-    bool empty() const;
+    bool empty() const
+    {
+        return dummyHead->next == dummyTail;
+    }
     friend ostream& operator<<(ostream& out, const IntList& rhs);
     void printReverse() const;
 };
