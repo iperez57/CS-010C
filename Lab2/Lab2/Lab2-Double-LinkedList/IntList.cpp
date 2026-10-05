@@ -51,5 +51,14 @@ void IntList::pop_front()
 		delete dummyHead->next;
 		dummyHead->next = successor;
 	}
-	
+}
+
+void IntList::push_back(int value)
+{
+	IntNode* newNode = new IntNode(value);
+	newNode->next = dummyTail;
+	newNode->prev = dummyTail->prev;
+
+	dummyTail->prev->next = newNode;
+	dummyTail->prev = newNode;
 }
