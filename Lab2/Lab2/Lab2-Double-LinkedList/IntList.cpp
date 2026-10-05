@@ -38,12 +38,12 @@ void IntList::push_front(int value)
 
 void IntList::pop_front()
 {
-	IntNode* successor = dummyHead->next->next;
 
 	if (dummyHead->next == dummyTail)
 	{
 		return;
 	}
+	IntNode* successor = dummyHead->next->next;
 
 	if (successor != nullptr)
 	{
@@ -61,4 +61,21 @@ void IntList::push_back(int value)
 
 	dummyTail->prev->next = newNode;
 	dummyTail->prev = newNode;
+}
+
+void IntList::pop_back()
+{
+	if (dummyTail->prev == dummyHead)
+	{
+		return;
+	}
+	IntNode* predecessor = dummyTail->prev->prev;
+
+	if (predecessor != nullptr)
+	{
+		predecessor->next = dummyTail;
+		delete dummyTail->prev;
+		dummyTail->prev = predecessor;
+	}
+
 }
