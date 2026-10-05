@@ -77,5 +77,21 @@ void IntList::pop_back()
 		delete dummyTail->prev;
 		dummyTail->prev = predecessor;
 	}
+}
 
+ostream& operator<<(ostream& out, const IntList& rhs)
+{
+	IntNode* current = rhs.dummyHead->next;
+	
+	while (current != rhs.dummyTail)
+	{
+		out << current->data;
+
+		if (current->next != rhs.dummyTail)
+		{
+			out << " ";
+		}
+		current = current->next;
+	}
+	return out;
 }
