@@ -31,6 +31,21 @@ public:
         return dummyHead->next == dummyTail;
     }
     friend ostream& operator<<(ostream& out, const IntList& rhs);
-    void printReverse() const;
+    void printReverse() const
+    {
+        IntNode* current = dummyTail->prev;
+
+        while (current != dummyHead)
+        {
+            cout << current->data;
+            
+            if (current->prev != dummyHead)
+            {
+                cout << " ";
+            }
+
+            current = current->prev;
+        }
+    }
 };
 #endif
