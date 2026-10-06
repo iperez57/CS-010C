@@ -47,6 +47,9 @@ Node* newNode(string payload)
     /** fill in this code **/
     Node* newNode = new Node();
     newNode->payload = payload;
+    newNode->next = nullptr;
+
+    return newNode;
 }
 
 Node* loadGame(int n, vector<string> names) {
@@ -59,17 +62,18 @@ Node* loadGame(int n, vector<string> names) {
         if (head == nullptr) {
             head = newNode(name); // initialize head specially
             /** fill in this code **/
-
+            prev = head;
         }
         else {
             prev->next = newNode(name);
             /** fill in this code **/
-
+            prev = prev->next;
         }
     }
 
     if (prev != nullptr) {
         /** fill in this code **/ // make circular
+        prev->next = head;
     }
     return head;
 }
@@ -88,8 +92,10 @@ void print(Node* start) { // prints list
 Node* runGame(Node* start, int k) { // josephus w circular list, k = num skips
     Node* curr = start;
     Node* prev = curr;
-    while (/** fill in this code **/) { // exit condition, last person standing
-        for (int i = 0; i < k; ++i) { // find kth node
+    while (/** fill in this code **/curr != nullptr) 
+    { // exit condition, last person standing
+        for (int i = 0; i < k; ++i) 
+        { // find kth node
             /** fill in this code
             **/
         }
