@@ -37,7 +37,8 @@ Note: in our version of this game, it is possible for a player to vote themselve
 #include <vector>
 using namespace std;
 
-struct Node {
+struct Node 
+{
     string payload;
     Node* next;
 };
@@ -52,38 +53,46 @@ Node* newNode(string payload)
     return newNode;
 }
 
-Node* loadGame(int n, vector<string> names) {
+Node* loadGame(int n, vector<string> names) 
+{
     Node* head = nullptr;
     Node* prev = nullptr;
     string name;
 
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; ++i) 
+    {
         name = names.at(i);
-        if (head == nullptr) {
+        if (head == nullptr) 
+        {
             head = newNode(name); // initialize head specially
             /** fill in this code **/
             prev = head;
         }
-        else {
+        else 
+        {
             prev->next = newNode(name);
             /** fill in this code **/
             prev = prev->next;
         }
     }
 
-    if (prev != nullptr) {
+    if (prev != nullptr) 
+    {
         /** fill in this code **/ // make circular
         prev->next = head;
     }
     return head;
 }
 
-void print(Node* start) { // prints list
+void print(Node* start) { 
+    // prints list
     Node* curr = start;
-    while (curr != nullptr) {
+    while (curr != nullptr) 
+    {
         cout << curr->payload << endl;
         curr = curr->next;
-        if (curr == start) {
+        if (curr == start) 
+        {
             break; // exit circular list
         }
     }
@@ -93,16 +102,22 @@ Node* runGame(Node* start, int k) { // josephus w circular list, k = num skips
     Node* curr = start;
     Node* prev = curr;
     while (/** fill in this code **/curr != nullptr) 
-    { // exit condition, last person standing
+    { 
+        // exit condition, last person standing
         for (int i = 0; i < k; ++i) 
-        { // find kth node
-            /** fill in this code
-            **/
+        {   // find kth node
+            /** fill in this code**/
+            prev = curr;
+            curr = curr->next;
         }
 
-        /** fill in this code **/ // delete kth node
+        /** fill in this code **/ 
+        // delete kth node
+        prev->next = curr->next;
         delete curr;
         /** fill in this code **/
+        curr = prev->next;
+        
     }
 
     return curr; // last person standing
