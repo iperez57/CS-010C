@@ -101,25 +101,23 @@ void print(Node* start) {
 Node* runGame(Node* start, int k) { // josephus w circular list, k = num skips
     Node* curr = start;
     Node* prev = curr;
-    while (/** fill in this code **/curr != nullptr) 
-    { 
+    while (/** fill in this code **/curr->next != curr)
+    {
         // exit condition, last person standing
-        for (int i = 0; i < k; ++i) 
+        for (int i = 0; i < k; ++i)
         {   // find kth node
             /** fill in this code**/
             prev = curr;
             curr = curr->next;
         }
 
-        /** fill in this code **/ 
+        /** fill in this code **/
         // delete kth node
         prev->next = curr->next;
         delete curr;
         /** fill in this code **/
         curr = prev->next;
-        
     }
-
     return curr; // last person standing
 }
 
