@@ -44,3 +44,51 @@ friend ostream & operator<<(ostream &out, const IntList &rhs): A global friend f
 void printReverse() const: prints to a single line all of the int values stored in the list in REVERSE order, each separated by a space. This function does NOT output a newline or space at the end.
 */
 
+#include "IntList.h"
+
+int main()
+{
+    IntList list;
+
+    // Test empty()
+    cout << "Empty: " << list.empty() << endl;
+
+    // Test push_front()
+    list.push_front(10);
+    list.push_front(5);
+
+    cout << "After push_front: " << list << endl;
+
+    // Test push_back()
+    list.push_back(20);
+    list.push_back(30);
+
+    cout << "After push_back: " << list << endl;
+
+    // Test printReverse()
+    cout << "Reverse: ";
+    list.printReverse();
+    cout << endl;
+
+    // Test pop_front()
+    list.pop_front();
+
+    cout << "After pop_front: " << list << endl;
+
+    // Test pop_back()
+    list.pop_back();
+
+    cout << "After pop_back: " << list << endl;
+
+    // Test empty() again
+    cout << "Empty: " << list.empty() << endl;
+
+    // Remove remaining nodes
+    list.pop_front();
+    list.pop_front();
+
+    cout << "After removing everything: " << list << endl;
+    cout << "Empty: " << list.empty() << endl;
+
+    return 0;
+}
