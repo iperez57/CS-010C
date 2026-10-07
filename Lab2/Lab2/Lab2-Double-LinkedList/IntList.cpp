@@ -45,12 +45,9 @@ void IntList::pop_front()
 	}
 	IntNode* successor = dummyHead->next->next;
 
-	if (successor != nullptr)
-	{
 		successor->prev = dummyHead;
 		delete dummyHead->next;
 		dummyHead->next = successor;
-	}
 }
 
 void IntList::push_back(int value)
@@ -71,12 +68,9 @@ void IntList::pop_back()
 	}
 	IntNode* predecessor = dummyTail->prev->prev;
 
-	if (predecessor != nullptr)
-	{
 		predecessor->next = dummyTail;
 		delete dummyTail->prev;
 		dummyTail->prev = predecessor;
-	}
 }
 
 ostream& operator<<(ostream& out, const IntList& rhs)
