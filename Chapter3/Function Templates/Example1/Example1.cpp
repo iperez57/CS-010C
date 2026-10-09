@@ -2,6 +2,7 @@
 #include <iostream>
 using namespace std;
 
+//needs T as placeholder value T is all data types
 template<typename T>
 T TripleMin(double item1, T item2, T item3) {
     T minVal = item1;   // Holds min item value, init to first item
