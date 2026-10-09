@@ -53,4 +53,29 @@ int main(){
 }
 You should come up with test harnesses to test your selection_sort function.
 */
+#include <iostream>
+#include <vector>
+#include <string>
 
+using namespace std;
+
+//Templates
+template<typename T>
+unsigned min_index(const vector<T>& vals, unsigned index)
+{
+    unsigned min = index;
+    for (unsigned i = index; i < vals.size(); i++)
+    {
+        if (vals[i] < vals[min])
+        {
+            min = i;
+        }
+    }
+    return min;
+}
+
+template<typename T>
+T selection_sort(vector<T>& vals)
+{
+
+}
