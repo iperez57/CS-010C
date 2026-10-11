@@ -64,18 +64,31 @@ template<typename T>
 unsigned min_index(const vector<T>& vals, unsigned index)
 {
     unsigned min = index;
+    //loops through the vector
     for (unsigned i = index; i < vals.size(); i++)
     {
+        //compares element with current minimum
         if (vals[i] < vals[min])
         {
             min = i;
         }
     }
+    //returns the index of minimum
     return min;
 }
 
 template<typename T>
-T selection_sort(vector<T>& vals)
+void selection_sort(vector<T>& vals)
 {
+    //loops through the vector
+    for (unsigned i = 0; i < vals.size(); i++)
+    {
+        //sets min to equal the current index
+        unsigned min = min_index(vals, i);
+        T temp = vals[i];
 
+        //swaps values of min index
+        vals[i] = vals[min];
+        vals[min] = temp;
+    }
 }
