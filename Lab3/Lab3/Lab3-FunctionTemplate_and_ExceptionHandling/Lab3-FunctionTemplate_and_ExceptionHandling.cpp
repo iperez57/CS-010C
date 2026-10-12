@@ -92,3 +92,9 @@ void selection_sort(vector<T>& vals)
         vals[min] = temp;
     }
 }
+
+template<typename T>
+T getElement(vector<T>& vals, int index)
+{
+    return vals.at(index);
+}
