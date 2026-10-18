@@ -11,11 +11,12 @@ class Node
 {
 private:
 	string data;
-	int count = 1;
+	int count;
 	Node* leftNode = nullptr;
 	Node* rightNode = nullptr;
 public:
 	Node();
+	Node(string& value);
 	void set_leftNode();
 	void set_rightNode();
 };
