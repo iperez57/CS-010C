@@ -27,4 +27,24 @@ public:
     stack& operator=(const stack& other) = delete;
 };
 
+
+template <typename T>
+stack<T>::stack()
+{
+    data;
+    size = 0;
+}
+
+template <typename T>
+void stack<T>::push(T val)
+{
+    if (size == MAX_SIZE)
+    {
+        throw overflow_error("Called push on full stack.");
+    }
+
+    data[size] = val;
+    size++;
+}
+
 #endif
