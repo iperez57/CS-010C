@@ -47,4 +47,29 @@ void stack<T>::push(T val)
     size++;
 }
 
+template <typename T>
+void stack<T>::pop()
+{
+    if (size == 0)
+    {
+        throw out_of_range("Called pop on empty stack.");
+    }
+
+    size--;
+}
+
+template <typename T>
+void stack<T>::pop_two()
+{
+    if (size == 0)
+    {
+        throw out_of_range("Called pop_two on empty stack.");
+    }
+    if (size == 1)
+    {
+        throw out_of_range("Calledpop_twpon stack of size 1.");
+    }
+    size -= 2;
+}
+
 #endif
