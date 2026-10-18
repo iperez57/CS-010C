@@ -27,3 +27,23 @@ void Node::set_rightNode(Node* node)
 {
 	rightNode = node;
 }
+
+int Node::get_count()
+{
+	return count;
+}
+
+string Node::get_data()
+{
+	return data;
+}
+
+Node* Node::get_leftNode()
+{
+	return leftNode;
+}
+
+Node* Node::get_rightNode()
+{
+	return rightNode;
+}
