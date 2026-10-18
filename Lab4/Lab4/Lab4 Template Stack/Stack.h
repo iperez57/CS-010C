@@ -72,4 +72,33 @@ void stack<T>::pop_two()
     size -= 2;
 }
 
+
+template <typename T>
+T stack<T>::top()
+{
+    if (size == 0)
+    {
+        throw underflow_error("Called top on empty stack.");
+    }
+    return data[size - 1];
+}
+
+template <typename T>
+bool stack<T>::empty()
+{
+    if (size == 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+template <typename T>
+stack<T>::~stack()
+{
+}
+#endif
 #endif
