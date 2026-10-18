@@ -17,3 +17,13 @@ Node::Node(string& value)
 	leftNode = nullptr;
 	rightNode = nullptr;
 }
+
+void Node::set_leftNode(Node* node)
+{
+	leftNode = node;
+}
+
+void Node::set_rightNode(Node* node)
+{
+	rightNode = node;
+}

@@ -17,8 +17,8 @@ private:
 public:
 	Node();
 	Node(string& value);
-	void set_leftNode();
-	void set_rightNode();
+	void set_leftNode(Node* node);
+	void set_rightNode(Node* node);
 };
 
 #endif
