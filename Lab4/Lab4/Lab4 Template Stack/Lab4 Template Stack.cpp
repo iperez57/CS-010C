@@ -1,20 +1,218 @@
-// Lab4 Template Stack.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <string>
+#include "stack.h"
+#include <stdexcept>
+
+using std::cin;
+using std::cout;
+using std::endl;
+using std::string;
+using std::underflow_error;
+using std::overflow_error;
+using std::out_of_range;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    cout << "Enter a test number(1-6): ";
+    int test;
+    cin >> test;
+    cout << endl;
+    //tests constructor, push, pop, top and empty
+    if (test == 1) {
+        try {
+            cout << "\nstack1 constructor called";
+            stack<int> stack1;
+            if (stack1.empty()) {
+                cout << "\nstack1 is empty.";
+            }
+            else {
+                cout << "\nstack1 is not empty";
+            }
+            cout << "\npush 10";
+            stack1.push(10);
+            cout << "\npush 20";
+            stack1.push(20);
+            cout << "\npush 30";
+            stack1.push(30);
+            cout << "\nstack1 top: ";
+            cout << stack1.top();
+            cout << "\npop";
+            stack1.pop();
+            cout << "\nstack1 top: ";
+            cout << stack1.top();
+            cout << "\npop";
+            stack1.pop();
+            cout << "\nstack1 top: ";
+            cout << stack1.top();
+            cout << "\npop";
+            stack1.pop();
+            if (stack1.empty()) {
+                cout << "\nstack1 is empty.";
+            }
+            else {
+                cout << "\nstack1 is not empty";
+            }
+            cout << endl;
+        }
+        catch (underflow_error& e) {
+            cout << e.what() << endl;
+        }
+        catch (overflow_error& e) {
+            cout << e.what() << endl;
+        }
+        catch (out_of_range& e) {
+            cout << e.what() << endl;
+        }
+    }
+    //tests top on empty stack
+    if (test == 2) {
+        try {
+            cout << "\nstack2 constructor called";
+            stack<int> stack2;
+            cout << "\nstack2 top: ";
+            cout << stack2.top();
+            cout << endl;
+        }
+        catch (underflow_error& e) {
+            cout << e.what() << endl;
+        }
+        catch (overflow_error& e) {
+            cout << e.what() << endl;
+        }
+        catch (out_of_range& e) {
+            cout << e.what() << endl;
+        }
+    }
+    //tests pop from an empty stack
+    if (test == 3) {
+        try {
+            cout << "\nstack3 constructor called";
+            stack<int> stack3;
+            cout << "\npop from empty stack\n";
+            stack3.pop();
+            cout << endl;
+        }
+        catch (underflow_error& e) {
+            cout << e.what() << endl;
+        }
+        catch (overflow_error& e) {
+            cout << e.what() << endl;
+        }
+        catch (out_of_range& e) {
+            cout << e.what() << endl;
+        }
+    }
+    //tests push to a full stack
+    if (test == 4) {
+        try {
+            cout << "\nstack4 constructor called";
+            stack<int> stack4;
+            cout << "\npush 20 elements";
+            for (int i = 1; i <= 20; ++i) {
+                stack4.push(i);
+            }
+            cout << "\nstack4 top: ";
+            cout << stack4.top();
+            cout << "\npush 21\n";
+            stack4.push(21);
+            cout << endl;
+        }
+        catch (underflow_error& e) {
+            cout << e.what() << endl;
+        }
+        catch (overflow_error& e) {
+            cout << e.what() << endl;
+        }
+        catch (out_of_range& e) {
+            cout << e.what() << endl;
+        }
+    }
+    //tests stack of strings
+    if (test == 5) {
+        try {
+            cout << "\nstack5 constructor called";
+            stack<string> stack5;
+            cout << "\npush A";
+            stack5.push("A");
+            cout << "\npush B";
+            stack5.push("B");
+            cout << "\npush C";
+            stack5.push("C");
+            cout << "\nstack5 top: ";
+            cout << stack5.top();
+            cout << "\npop";
+            stack5.pop();
+            cout << "\nstack5 top: ";
+            cout << stack5.top();
+            cout << "\npop";
+            stack5.pop();
+            cout << "\nstack5 top: ";
+            cout << stack5.top();
+            cout << "\npop";
+            stack5.pop();
+            if (stack5.empty()) {
+                cout << "\nstack5 is empty.";
+            }
+            else {
+                cout << "\nstack5 is not empty";
+            }
+            cout << "\nstack5 top: \n";
+            stack5.top();
+            cout << endl;
+        }
+        catch (underflow_error& e) {
+            cout << e.what() << endl;
+        }
+        catch (overflow_error& e) {
+            cout << e.what() << endl;
+        }
+        catch (out_of_range& e) {
+            cout << e.what() << endl;
+        }
+    }
+
+    //tests stack of strings
+    if (test == 6) {
+        try {
+            cout << "\nstack6 constructor called";
+            stack<string> stack6;
+            cout << "\npush A";
+            stack6.push("A");
+            cout << "\npush B";
+            stack6.push("B");
+            cout << "\npush C";
+            stack6.push("C");
+            cout << "\nstack5 top: ";
+            cout << stack6.top();
+            cout << "\npopping two items";
+            stack6.pop_two();
+            cout << "\nstack5 top: ";
+            cout << stack6.top();
+            cout << "\npopping 2 items\n";
+            stack6.pop_two();
+            cout << "\nstack5 top: ";
+            cout << stack6.top();
+            cout << "\npopping two items\n";
+            stack6.pop_two();
+            if (stack6.empty()) {
+                cout << "\nstack6 is empty.";
+            }
+            else {
+                cout << "\nstack6 is not empty";
+            }
+            cout << "\nstack6 top: \n";
+            stack6.top();
+            cout << endl;
+        }
+        catch (underflow_error& e) {
+            cout << e.what() << endl;
+        }
+        catch (overflow_error& e) {
+            cout << e.what() << endl;
+        }
+        catch (out_of_range& e) {
+            cout << e.what() << endl;
+        }
+    }
+    return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
