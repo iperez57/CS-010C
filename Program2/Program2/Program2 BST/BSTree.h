@@ -1,0 +1,23 @@
+#include "Node.h"
+
+class BSTree {
+
+private:
+	Node* root;
+
+private:
+	void preOrder(Node*) const;
+	void inOrder(Node*) const;
+	void postOrder(Node*) const;
+
+public:
+	void insert(const std::string&);
+	bool search(const std::string&) const;
+	void inOrder() const;
+	void postOrder() const;
+	void preOrder() const;
+	std::string largest() const;
+	std::string smallest() const;
+	int height(const std::string&) const;
+	void remove(std::string);
+};
