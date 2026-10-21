@@ -52,3 +52,21 @@ void BSTree::insert(const string& data)
         }
     }
 }
+
+string BSTree::largest() const
+{
+    Node* current;
+    if (root == nullptr)
+    {
+        return "";
+    }
+    else
+    {
+        current = root;
+        while (current->get_rightNode() != nullptr)
+        {
+            current = current->get_rightNode();
+        }
+    }
+    return current->get_data();
+}
