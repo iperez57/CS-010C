@@ -70,3 +70,21 @@ string BSTree::largest() const
     }
     return current->get_data();
 }
+
+
+string BSTree::smallest() const
+{
+    Node* current;
+    if (root == nullptr)
+    {
+        return "";
+    }
+    else
+    {
+        while (current->get_leftNode() != nullptr)
+        {
+            current = current->get_leftNode();
+        }
+    }
+    return current->get_data();
+}
