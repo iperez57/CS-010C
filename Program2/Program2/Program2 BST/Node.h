@@ -23,6 +23,7 @@ public:
 	int get_count();
 	Node* get_leftNode();
 	Node* get_rightNode();
+	void increaseCounter();
 };
 
 #endif
