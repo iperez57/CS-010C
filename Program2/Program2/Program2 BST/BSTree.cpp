@@ -1,0 +1,54 @@
+#include "BSTree.h"
+#include "Node.h"
+
+BSTree::BSTree()
+{
+    root = nullptr;
+}
+
+void BSTree::insert(const string& data)
+{
+    Node* newNode = new Node(data);
+    Node* current = root;
+
+    if (root == nullptr)
+    {
+        root = newNode;
+    }
+    else
+    {
+        while (current != nullptr)
+        {
+            if (newNode->get_data() < current->get_data())
+            {
+                if (current->get_leftNode() == nullptr)
+                {
+                    current->set_leftNode(newNode);
+                    current = nullptr;
+                }
+                else
+                {
+                    current = current->get_leftNode();
+                }
+            }
+            else if (newNode->get_data() > current->get_data())
+            {
+                if (current->get_rightNode() == nullptr)
+                {
+                    current->set_rightNode(newNode);
+                    current = nullptr;
+                }
+                else
+                {
+                    current = current->get_rightNode();
+                }
+            }
+            else
+            {
+                current->increaseCounter();
+                delete newNode;
+                current = nullptr;
+            }
+        }
+    }
+}

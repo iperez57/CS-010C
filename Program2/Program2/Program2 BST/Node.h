@@ -12,8 +12,8 @@ class Node
 private:
 	string data;
 	int count;
-	Node* leftNode = nullptr;
-	Node* rightNode = nullptr;
+	Node* leftNode;
+	Node* rightNode;
 public:
 	Node();
 	Node(string& value);

@@ -11,8 +11,8 @@ private:
 	void postOrder(Node*) const;
 
 public:
-	void insert(const std::string&);
-	bool search(const std::string&) const;
+	void insert(const std::string&data);
+	bool search(const std::string&data) const;
 	void inOrder() const;
 	void postOrder() const;
 	void preOrder() const;
