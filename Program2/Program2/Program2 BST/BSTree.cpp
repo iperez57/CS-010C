@@ -263,3 +263,22 @@ void BSTree::postOrder(Node* current) const
 
     cout << current->get_data() << "(" << current->get_count() << "), ";
 }
+
+void BSTree::inOrder() const
+{
+    inOrder(root);
+}
+
+void BSTree::inOrder(Node* current) const
+{
+    if (current == nullptr)
+    {
+        return;
+    }
+
+    inOrder(current->get_leftNode());
+
+    cout << current->get_data() << "(" << current->get_count() << "), ";
+
+    inOrder(current->get_rightNode());
+}
