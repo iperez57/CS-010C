@@ -19,6 +19,7 @@ public:
 	Node(string& value);
 	void set_leftNode(Node* node);
 	void set_rightNode(Node* node);
+	void set_data(string data);
 	string get_data();
 	int get_count();
 	Node* get_leftNode();

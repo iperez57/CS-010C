@@ -11,6 +11,7 @@ private:
 	void postOrder(Node*) const;
 
 public:
+	BSTree();
 	void insert(const std::string&data);
 	bool search(const std::string&data) const;
 	void inOrder() const;

@@ -28,6 +28,11 @@ void Node::set_rightNode(Node* node)
 	rightNode = node;
 }
 
+void Node::set_data(string dataa)
+{
+	data = dataa;
+}
+
 int Node::get_count()
 {
 	return count;
