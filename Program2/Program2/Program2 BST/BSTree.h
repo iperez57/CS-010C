@@ -1,5 +1,8 @@
 #include "Node.h"
 
+#ifndef BSTREE_H
+#define BSTREE_H
+
 class BSTree {
 
 private:
@@ -22,3 +25,5 @@ public:
 	int height(const std::string&) const;
 	void remove(const std:: string&);
 };
+
+#endif

@@ -10,7 +10,7 @@ Node::Node()
 	rightNode = nullptr;
 }
 
-Node::Node(string& value)
+Node::Node(const string& value)
 {
 	data = value;
 	count = 1;
@@ -28,7 +28,7 @@ void Node::set_rightNode(Node* node)
 	rightNode = node;
 }
 
-void Node::set_data(string dataa)
+void Node::set_data(const string &dataa)
 {
 	data = dataa;
 }

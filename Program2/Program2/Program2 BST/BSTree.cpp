@@ -74,7 +74,7 @@ string BSTree::largest() const
 
 string BSTree::smallest() const
 {
-    Node* current;
+    Node* current = root;
     if (root == nullptr)
     {
         return "";

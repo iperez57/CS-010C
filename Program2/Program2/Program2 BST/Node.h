@@ -16,10 +16,10 @@ private:
 	Node* rightNode;
 public:
 	Node();
-	Node(string& value);
+	Node(const string& value);
 	void set_leftNode(Node* node);
 	void set_rightNode(Node* node);
-	void set_data(string data);
+	void set_data(const string &data);
 	string get_data();
 	int get_count();
 	Node* get_leftNode();
