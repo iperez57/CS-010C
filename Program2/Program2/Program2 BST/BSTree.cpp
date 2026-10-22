@@ -53,6 +53,27 @@ void BSTree::insert(const string& data)
     }
 }
 
+bool BSTree::search(const string& data) const
+{
+    Node* current = root;
+    while (current != nullptr)
+    {
+        if (current->get_data == data)
+        {
+            return true;
+        }
+        else if (data < current->get_data)
+        {
+            current = current->get_leftNode();
+        }
+        else
+        {
+            current = current->get_rightNode();
+        }
+    }
+    return false;
+}
+
 string BSTree::largest() const
 {
     Node* current;
