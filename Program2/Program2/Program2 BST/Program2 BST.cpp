@@ -3,8 +3,6 @@
 
 using namespace std;
 
-/*
-
 void printOrders(BSTree* tree) {
     cout << "Preorder = ";
     tree->preOrder();
@@ -13,7 +11,6 @@ void printOrders(BSTree* tree) {
     cout << "Postorder = ";
     tree->postOrder();
 }
-*/
 
 int menu() {
     int choice = 0;
@@ -64,7 +61,7 @@ int main() {
 
         }
         else if (choice == 3) {
-            //printOrders(&tree);
+            printOrders(&tree);
 
         }
         else if (choice == 4) {
