@@ -14,6 +14,7 @@ void BSTree::insert(const string& data)
     if (root == nullptr)
     {
         root = newNode;
+        return;
     }
     else
     {
@@ -25,6 +26,7 @@ void BSTree::insert(const string& data)
                 {
                     current->set_leftNode(newNode);
                     current = nullptr;
+                    return;
                 }
                 else
                 {
@@ -37,6 +39,7 @@ void BSTree::insert(const string& data)
                 {
                     current->set_rightNode(newNode);
                     current = nullptr;
+                    return;
                 }
                 else
                 {
@@ -48,6 +51,7 @@ void BSTree::insert(const string& data)
                 current->increaseCounter();
                 delete newNode;
                 current = nullptr;
+                return;
             }
         }
     }
@@ -117,33 +121,43 @@ string BSTree::smallest() const
 
 int BSTree::height(const string& data) const
 {
-    int height = 0;
     Node* current = root;
 
-    if (root == nullptr)
+    while (current != nullptr)
     {
-        return height;
-    }
-    else
-    {
-        while (current != nullptr)
+        if (current->get_data() == data)
         {
-            if (current->get_data() == data)
-            {
-                return height;
-            }
-            else if (current->get_data() > data)
-            {
-                current = current->get_leftNode();
-            }
-            else
-            {
-                current = current->get_rightNode();
-            }
-            height++;
+            return height(current);
+        }
+        else if (data < current->get_data())
+        {
+            current = current->get_leftNode();
+        }
+        else
+        {
+            current = current->get_rightNode();
         }
     }
     return -1;
+}
+
+int BSTree::height(Node* current) const
+{
+    if (current == nullptr)
+    {
+        return -1;
+    }
+    int leftHeight = height(current->get_leftNode());
+    int rightHeight = height(current->get_rightNode());
+
+    if (leftHeight > rightHeight)
+    {
+        return 1 + leftHeight;
+    }
+    else
+    {
+        return 1 + rightHeight;
+    }
 }
 
 void BSTree::remove(const string& data)
@@ -172,6 +186,12 @@ bool BSTree::remove(Node* parent, Node* current, const string& data)
     }
 
     //found node to remove
+    //decrease count 
+    if (current->get_count() > 1)
+    {
+        current->decreaseCounter();
+        return true;
+    }
     //node has 2 children
     if (current->get_leftNode() != nullptr && current->get_rightNode() != nullptr)
     {
@@ -190,7 +210,9 @@ bool BSTree::remove(Node* parent, Node* current, const string& data)
 
         return remove(successorParent, successor, successor->get_data());
     }
+
     // Root node with 1 or 0 children
+
     else if (current == root)
     {
         if (current->get_leftNode() != nullptr)
@@ -224,8 +246,9 @@ bool BSTree::remove(Node* parent, Node* current, const string& data)
         {
             parent->set_rightNode(current->get_rightNode());
         }
-        return true;
     }
+    delete current;
+    return true;
 }
 
 void BSTree::preOrder() const
