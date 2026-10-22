@@ -67,7 +67,7 @@ void stack<T>::pop_two()
     }
     if (size == 1)
     {
-        throw out_of_range("Calledpop_twpon stack of size 1.");
+        throw out_of_range("Called pop_two on stack of size 1.");
     }
     size -= 2;
 }

@@ -20,7 +20,13 @@ void BSTree::insert(const string& data)
     {
         while (current != nullptr)
         {
-            if (newNode->get_data() < current->get_data())
+            if (current->get_data() == newNode->get_data())
+            {
+                current->increaseCounter();
+                delete newNode;
+                return;
+            }
+            else if (newNode->get_data() < current->get_data())
             {
                 if (current->get_leftNode() == nullptr)
                 {
@@ -45,13 +51,6 @@ void BSTree::insert(const string& data)
                 {
                     current = current->get_rightNode();
                 }
-            }
-            else
-            {
-                current->increaseCounter();
-                delete newNode;
-                current = nullptr;
-                return;
             }
         }
     }
