@@ -227,3 +227,21 @@ bool BSTree::remove(Node* parent, Node* current, const string& data)
         return true;
     }
 }
+
+void BSTree::preOrder() const
+{
+    preOrder(root);
+}
+
+void BSTree::preOrder(Node* current) const
+{
+    if (current == nullptr)
+    {
+        return;
+    }
+
+    cout << current->get_data() << "(" << current->get_count() << "), ";
+
+    preOrder(current->get_leftNode());
+    preOrder(current->get_rightNode());
+}
