@@ -58,11 +58,11 @@ bool BSTree::search(const string& data) const
     Node* current = root;
     while (current != nullptr)
     {
-        if (current->get_data == data)
+        if (current->get_data() == data)
         {
             return true;
         }
-        else if (data < current->get_data)
+        else if (data < current->get_data())
         {
             current = current->get_leftNode();
         }
