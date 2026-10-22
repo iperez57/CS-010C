@@ -88,3 +88,34 @@ string BSTree::smallest() const
     }
     return current->get_data();
 }
+
+int BSTree::height(const string& data) const
+{
+    int height = 0;
+    Node* current = root;
+
+    if (root == nullptr)
+    {
+        return height;
+    }
+    else
+    {
+        while (current != nullptr)
+        {
+            if (current->get_data() == data)
+            {
+                return height;
+            }
+            else if (current->get_data() > data)
+            {
+                current = current->get_leftNode();
+            }
+            else
+            {
+                current = current->get_rightNode();
+            }
+            height++;
+        }
+    }
+    return -1;
+}
