@@ -14,7 +14,7 @@ private:
 	void postOrder(Node*) const;
 
 	bool search(Node*, const std::string&) const;
-	Node* remove(Node*, const std::string&);
+	bool remove(Node*, Node*, const std::string&);
 
 public:
 	BSTree();

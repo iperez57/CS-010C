@@ -59,23 +59,25 @@ bool BSTree::search(const string& data) const
 
 bool BSTree::search(Node* current, const string& data) const
 {
-    //cant find data
-    if (current == nullptr)
+    if (current != nullptr)
     {
-        return false;
+        //found data
+        if (data == current->get_data())
+        {
+            return true;
+        }
+        //search left
+        else if (data < current->get_data())
+        {
+            return search(current->get_leftNode(), data);
+        }
+        //search right
+        else
+        {
+            return search(current->get_rightNode(), data);
+        }
     }
-    //found data
-    if (current->get_data() == data)
-    {
-        return true;
-    }
-    //search left
-    if (data < current->get_data())
-    {
-        return search(current->get_leftNode(), data);
-    }
-    //search right
-    return search(current->get_rightNode(), data);
+    return false;
 }
 
 string BSTree::largest() const
@@ -95,7 +97,6 @@ string BSTree::largest() const
     }
     return current->get_data();
 }
-
 
 string BSTree::smallest() const
 {
@@ -147,98 +148,82 @@ int BSTree::height(const string& data) const
 
 void BSTree::remove(const string& data)
 {
-    Node* parent = nullptr;
-    Node* current = root;
+    remove(nullptr, root, data);
+}
 
-    while (current != nullptr)
+bool BSTree::remove(Node* parent, Node* current, const string& data)
+{
+    //data not found
+    if (current == nullptr)
     {
-        //check if current data is equal to data wanted to be removed
-        if (current->get_data() == data)
+        return false;
+    }
+
+    //search left tree
+    if (data < current->get_data())
+    {
+        return remove(current, current->get_leftNode(), data);
+    }
+
+    //search right tree
+    if (data > current->get_data())
+    {
+        return remove(current, current->get_rightNode(), data);
+    }
+
+    //found node to remove
+    //node has 2 children
+    if (current->get_leftNode() != nullptr && current->get_rightNode() != nullptr)
+    {
+        Node* successorParent = current;
+        Node* successor = current->get_rightNode();
+
+        //find left node in right subtree
+        while (successor->get_leftNode() != nullptr)
         {
-            if (current->get_leftNode() == nullptr && current->get_rightNode() == nullptr)
-            {
-                //remove leaf
-                if (parent == nullptr)
-                {
-                    root = nullptr;
-                }
-                else if (parent->get_leftNode() == current)
-                {
-                    parent->set_leftNode(nullptr);
-                }
-                else
-                {
-                    parent->set_rightNode(nullptr);
-                }
-                delete current;
-                return;
-            }
-            else if (current->get_rightNode() == nullptr)
-            {
-                //remove node with only left child
-                if (parent == nullptr)
-                {
-                    root = current->get_leftNode();
-                }
-                else if (parent->get_leftNode() == current)
-                {
-                    parent->set_leftNode(current->get_leftNode());
-                }
-                else
-                {
-                    parent->set_rightNode(current->get_leftNode());
-                }
-
-                delete current;
-                return;
-            }
-            else if (current->get_leftNode() == nullptr)
-            {
-                //removes node with only right child
-                if (parent == nullptr)
-                {
-                    root = current->get_rightNode();
-                }
-                else if (parent->get_leftNode() == current)
-                {
-                    parent->set_leftNode(current->get_rightNode());
-                }
-                else
-                {
-                    parent->set_rightNode(current->get_rightNode());
-                }
-
-                delete current;
-                return;
-            }
-            else
-            {
-                //remove node with two children
-                //Find leftmost child of right subtree
-                Node* successor = current->get_rightNode();
-                while (successor->get_leftNode() != nullptr)
-                {
-                    successor = successor->get_leftNode();
-                }
-                //copy key to current node
-                current->set_data(successor->get_data());
-                parent = current;
-
-                //reassign current and key so loop continues with new key
-                current = current->get_rightNode();
-            }
+            successorParent = successor;
+            successor = successor->get_leftNode();
         }
-        else if (current->get_data() < data)
+
+        //copy successor into current
+        current->set_data(successor->get_data());
+
+        return remove(successorParent, successor, successor->get_data());
+    }
+    // Root node with 1 or 0 children
+    else if (current == root)
+    {
+        if (current->get_leftNode() != nullptr)
         {
-            //search right
-            parent = current;
-            current = current->get_rightNode();
+            root = current->get_leftNode();
         }
         else
         {
-            //search left
-            parent = current;
-            current = current->get_leftNode();
+            root = current->get_rightNode();
         }
+    }
+    //only left children
+    else if (current->get_leftNode() != nullptr)
+    {
+        if (parent->get_leftNode() == current)
+        {
+            parent->set_leftNode(current->get_leftNode());
+        }
+        else
+        {
+            parent->set_rightNode(current->get_leftNode());
+        }
+    }
+    else
+    {
+        if (parent->get_leftNode() == current)
+        {
+            parent->set_leftNode(current->get_rightNode());
+        }
+        else
+        {
+            parent->set_rightNode(current->get_rightNode());
+        }
+        return true;
     }
 }
