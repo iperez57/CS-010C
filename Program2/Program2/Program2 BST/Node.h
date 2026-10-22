@@ -25,6 +25,7 @@ public:
 	Node* get_leftNode();
 	Node* get_rightNode();
 	void increaseCounter();
+	void decreaseCounter();
 };
 
 #endif

@@ -57,3 +57,8 @@ void Node::increaseCounter()
 {
 	count++;
 }
+
+void Node::decreaseCounter()
+{
+	count--;
+}

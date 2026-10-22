@@ -101,4 +101,3 @@ stack<T>::~stack()
 {
 }
 #endif
-#endif
