@@ -19,5 +19,5 @@ public:
 	std::string largest() const;
 	std::string smallest() const;
 	int height(const std::string&) const;
-	void remove(std::string);
+	void remove(const std:: string&);
 };

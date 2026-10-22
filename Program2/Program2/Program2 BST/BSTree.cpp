@@ -119,3 +119,101 @@ int BSTree::height(const string& data) const
     }
     return -1;
 }
+
+void BSTree::remove(const string& data)
+{
+    Node* parent = nullptr;
+    Node* current = root;
+
+    while (current != nullptr)
+    {
+        //check if current data is equal to data wanted to be removed
+        if (current->get_data() == data)
+        {
+            if (current->get_leftNode() == nullptr && current->get_rightNode() == nullptr)
+            {
+                //remove leaf
+                if (parent == nullptr)
+                {
+                    root = nullptr;
+                }
+                else if (parent->get_leftNode() == current)
+                {
+                    parent->set_leftNode(nullptr);
+                }
+                else
+                {
+                    parent->set_rightNode(nullptr);
+                }
+                delete current;
+                return;
+            }
+            else if (current->get_rightNode() == nullptr)
+            {
+                //remove node with only left child
+                if (parent == nullptr)
+                {
+                    root = current->get_leftNode();
+                }
+                else if (parent->get_leftNode() == current)
+                {
+                    parent->set_leftNode(current->get_leftNode());
+                }
+                else
+                {
+                    parent->set_rightNode(current->get_leftNode());
+                }
+
+                delete current;
+                return;
+            }
+            else if (current->get_leftNode() == nullptr)
+            {
+                //removes node with only right child
+                if (parent == nullptr)
+                {
+                    root = current->get_rightNode();
+                }
+                else if (parent->get_leftNode() == current)
+                {
+                    parent->set_leftNode(current->get_rightNode());
+                }
+                else
+                {
+                    parent->set_rightNode(current->get_rightNode());
+                }
+
+                delete current;
+                return;
+            }
+            else
+            {
+                //remove node with two children
+                //Find leftmost child of right subtree
+                Node* successor = current->get_rightNode();
+                while (successor->get_leftNode() != nullptr)
+                {
+                    successor = successor->get_leftNode();
+                }
+                //copy key to current node
+                current->set_data(successor->get_data());
+                parent = current;
+
+                //reassign current and key so loop continues with new key
+                current = current->get_rightNode();
+            }
+        }
+        else if (current->get_data() < data)
+        {
+            //search right
+            parent = current;
+            current = current->get_rightNode();
+        }
+        else
+        {
+            //search left
+            parent = current;
+            current = current->get_leftNode();
+        }
+    }
+}
