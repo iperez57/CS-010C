@@ -9,8 +9,6 @@ BSTree::BSTree()
 void BSTree::insert(const string& data)
 {
     Node* newNode = new Node(data);
-    Node* current = root;
-
     if (root == nullptr)
     {
         root = newNode;
@@ -18,11 +16,19 @@ void BSTree::insert(const string& data)
     }
     else
     {
+        Node* current = root;
         while (current != nullptr)
         {
-            if (current->get_data() == newNode->get_data())
+            cout << "Comparing input: " << data
+                << " with node: " << current->get_data() << endl;
+
+            if (data == current->get_data())
             {
                 current->increaseCounter();
+
+                cout << "Duplicate found! New count: "
+                    << current->get_count() << endl;
+
                 delete newNode;
                 return;
             }
@@ -32,20 +38,18 @@ void BSTree::insert(const string& data)
                 {
                     current->set_leftNode(newNode);
                     current = nullptr;
-                    return;
                 }
                 else
                 {
                     current = current->get_leftNode();
                 }
             }
-            else if (newNode->get_data() > current->get_data())
+            else
             {
                 if (current->get_rightNode() == nullptr)
                 {
                     current->set_rightNode(newNode);
                     current = nullptr;
-                    return;
                 }
                 else
                 {
@@ -191,23 +195,38 @@ bool BSTree::remove(Node* parent, Node* current, const string& data)
         current->decreaseCounter();
         return true;
     }
-    //node has 2 children
-    if (current->get_leftNode() != nullptr && current->get_rightNode() != nullptr)
+    // Node has two children
+    if (current->get_leftNode() != nullptr &&
+        current->get_rightNode() != nullptr)
     {
+        // Find the successor (leftmost node in right subtree)
         Node* successorParent = current;
         Node* successor = current->get_rightNode();
 
-        //find left node in right subtree
         while (successor->get_leftNode() != nullptr)
         {
             successorParent = successor;
             successor = successor->get_leftNode();
         }
 
-        //copy successor into current
+        // Copy successor's data into current node
         current->set_data(successor->get_data());
 
-        return remove(successorParent, successor, successor->get_data());
+        //transfer successor duplicate count
+        current->set_count(successor->get_count());
+
+        if (successorParent->get_leftNode() == successor)
+        {
+            successorParent->set_leftNode(successor->get_rightNode());
+        }
+        else
+        {
+            successorParent->set_rightNode(successor->get_rightNode());
+        }
+
+        // Continue removing the successor from the right subtree
+        return remove(current, current->get_rightNode(),
+            successor->get_data());
     }
 
     // Root node with 1 or 0 children

@@ -72,7 +72,6 @@ void stack<T>::pop_two()
     size -= 2;
 }
 
-
 template <typename T>
 T stack<T>::top()
 {

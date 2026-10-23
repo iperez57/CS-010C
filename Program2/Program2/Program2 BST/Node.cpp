@@ -33,6 +33,11 @@ void Node::set_data(const string &dataa)
 	data = dataa;
 }
 
+void Node::set_count(int countt)
+{
+	count = countt;
+}
+
 int Node::get_count()
 {
 	return count;
