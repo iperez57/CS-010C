@@ -1,7 +1,6 @@
 #pragma once
 
 #include <string>
-#include <iostream>
 
 using namespace std;
 struct TreeNode {
@@ -44,7 +43,7 @@ public:
 private:
     /* Helper function that returns an integer according to
        the priority of the given operator. */
-    int priority(char) const;
+     int priority(char) const;
 
     /* Helper function that returns the postfix notation equivalent
        to the given infix expression */
@@ -63,4 +62,7 @@ private:
     /* Helper function that outputs the postfix notation of the arithmetic expression tree
        by performing the postorder traversal of the tree. */
     void postfix(TreeNode* subtree) const;
+
+    //Helper function to destroy the tree
+    void destroyTree(TreeNode* node);
 };
