@@ -83,3 +83,45 @@ void arithmeticExpression::destroyTree(TreeNode* node)
 
     delete node;
 }
+
+void arithmeticExpression::buildTree()
+{
+    //converts infixExpression to postfix string
+    string postfix = infix_to_postfix();
+
+    //create stack of treenodes called s
+    stack<TreeNode*> s;
+
+    //loop through postfix and stores in c
+    for (unsigned i = 0; i < postfix.size(); ++i)
+    {
+        char c = postfix.at(i);
+
+        //check if c is a arthimetic operator
+        if (c != '+' && c != '-' && c != '*' && c != '/')
+        {
+            //creates newNode and pushing onto stack
+            TreeNode* newNode = new TreeNode(c);
+            s.push(newNode);
+        }
+        else
+        {
+            //when reaching operator if is a variable it assigns left and right
+            TreeNode* right = s.top();
+            s.pop();
+
+            TreeNode* left = s.top();
+            s.pop();
+
+            //creates parent node and combines left and right
+            TreeNode* parent = new TreeNode(c);
+
+            parent->left = left;
+            parent->right = right;
+
+            s.push(parent);
+        }
+    }
+    root = s.top();
+    s.pop();
+}
