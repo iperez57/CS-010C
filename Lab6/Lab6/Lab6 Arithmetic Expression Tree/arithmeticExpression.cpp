@@ -60,3 +60,26 @@ string arithmeticExpression::infix_to_postfix() const
     return oss.str();
 }
 
+arithmeticExpression::arithmeticExpression(const string& expression)
+{
+    infixExpression = expression;
+    root = nullptr;
+}
+
+arithmeticExpression::~arithmeticExpression()
+{
+    destroyTree(root);
+}
+
+void arithmeticExpression::destroyTree(TreeNode* node)
+{
+    if (node == nullptr)
+    {
+        return;
+    }
+
+    destroyTree(node->left);
+    destroyTree(node->right);
+
+    delete node;
+}
