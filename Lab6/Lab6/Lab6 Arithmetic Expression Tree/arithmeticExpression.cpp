@@ -18,7 +18,7 @@ int arithmeticExpression::priority(char op) const
     return priority;
 }
 
-string arithmeticExpression::infix_to_postfix() const 
+string arithmeticExpression::infix_to_postfix() const
 {
     stack<char> s;
     ostringstream oss;
@@ -139,16 +139,22 @@ void arithmeticExpression::infix(TreeNode* subtree) const
         return;
     }
 
-    cout << "(";
+    if (subtree->left != nullptr || subtree->right != nullptr)
+    {
+        cout << "(";
+    }
     infix(subtree->left);
     cout << subtree->data;
     infix(subtree->right);
-    cout << ")";
+    if (subtree->left != nullptr || subtree->right != nullptr)
+    {
+        cout << ")";
+    }
 }
 
 void arithmeticExpression::prefix() const
 {
-    infix(root);
+    prefix(root);
 }
 
 void arithmeticExpression::prefix(TreeNode* subtree) const
@@ -158,7 +164,6 @@ void arithmeticExpression::prefix(TreeNode* subtree) const
         return;
     }
 
-    cout << "(";
     cout << subtree->data;
     prefix(subtree->left);
     prefix(subtree->right);
@@ -176,8 +181,7 @@ void arithmeticExpression::postfix(TreeNode* subtree) const
         return;
     }
 
-    cout << "(";
     postfix(subtree->left);
     postfix(subtree->right);
-    cout << subtree->data << ")";
+    cout << subtree->data;
 }
