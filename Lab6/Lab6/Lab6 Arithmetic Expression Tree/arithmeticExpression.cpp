@@ -1,6 +1,7 @@
 #include "arithmeticExpression.h"
 #include <stack>
 #include <sstream>
+#include <iostream>
 
 int arithmeticExpression::priority(char op) const
 {
@@ -124,4 +125,23 @@ void arithmeticExpression::buildTree()
     }
     root = s.top();
     s.pop();
+}
+
+void arithmeticExpression::infix() const
+{
+    infix(root);
+}
+
+void arithmeticExpression::infix(TreeNode* subtree) const
+{
+    if (subtree == nullptr)
+    {
+        return;
+    }
+
+    cout << "(";
+    infix(subtree->left);
+    cout << subtree->data;
+    infix(subtree->right);
+    cout << ")";
 }
