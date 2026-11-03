@@ -160,6 +160,24 @@ void arithmeticExpression::prefix(TreeNode* subtree) const
 
     cout << "(";
     cout << subtree->data;
-    infix(subtree->left);
-    infix(subtree->right);
+    prefix(subtree->left);
+    prefix(subtree->right);
+}
+
+void arithmeticExpression::postfix() const
+{
+    postfix(root);
+}
+
+void arithmeticExpression::postfix(TreeNode* subtree) const
+{
+    if (subtree == nullptr)
+    {
+        return;
+    }
+
+    cout << "(";
+    postfix(subtree->left);
+    postfix(subtree->right);
+    cout << subtree->data << ")";
 }
