@@ -145,3 +145,21 @@ void arithmeticExpression::infix(TreeNode* subtree) const
     infix(subtree->right);
     cout << ")";
 }
+
+void arithmeticExpression::prefix() const
+{
+    infix(root);
+}
+
+void arithmeticExpression::prefix(TreeNode* subtree) const
+{
+    if (subtree == nullptr)
+    {
+        return;
+    }
+
+    cout << "(";
+    cout << subtree->data;
+    infix(subtree->left);
+    infix(subtree->right);
+}
