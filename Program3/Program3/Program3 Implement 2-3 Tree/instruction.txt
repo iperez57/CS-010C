@@ -1,0 +1,53 @@
+In this assignment, you will be implementing a 2-3 tree to handle the database for a provider of streaming movies. 
+Nodes will store the titles of the movies. 
+The title will be stored as a string and titles may consist of multiple words. 
+Include AT LEAST the following functions for your 2-3 tree. 
+For each operation I have included the function prototype that you must use so that your tree will interface with the main test file. 
+This is by no means an exhaustive list of the functions that you will be writing.
+
+You do NOT have to do all cases. Just implement enough to pass the test set.
+
+Required Functions
+
+Print the tree in the following manners. When printing a value, print the string followed by a , and 1 space. 
+You must follow these guidelines exactly! For example: "Aliens, The Lord of the Rings, Star Wars, "
+
+void preOrder( ) const: Traverse and print the tree in preorder notation.
+
+void inOrder( ) const: Traverse and print the tree in inorder notation
+
+void postOrder( ) const: Traverse and print the tree in postorder notation
+
+void insert(const string &): Insert an item into the 2-3 tree. 
+Be sure to maintain the 2-3 tree properties. 
+Inserting a value should only occur at the leaf-node level.
+When inserting at a full leaf node, you will need to split it, and propagate a value up to the parent. 
+We will only expect your code to handle splitting leaf nodes. 
+You do not need to handle splitting an internal node (that would make things way more complicated!).
+
+void remove(const string &): Remove a specified item from the tree. 
+Be sure to maintain the 2-3 tree properties. 
+Some removes can be resolved in multiple ways. To make sure that your output matches mine exactly, follow the examples listed in the notes below. 
+It is a good idea to map out all the possible cases you can run into. 
+We will not be testing your code to delete internal nodes. 
+If an ambiguous case arises that I have not specified, ask me and I will make the specification. 
+
+bool search(const string &) const: Search for a specified item in the tree. 
+Return true if the item exists in the tree. 
+Return false if the item does not exist.
+
+Please use this link to verify your understanding of different insertion/removal cases.
+
+Note: Please do not cling onto the zyBooks pseudocode involving 3-4 trees. 
+Despite seeming similar, they can have very different implementations. 
+Instead, use the approaches we discuss in lecture and in the notes above.
+
+You will need to reverse engineer how to do a preorder and postorder traversal in a 2-3 tree. 
+Given the input:
+
+Die Hard, Terminator, Kill Bill Volume 1, Pirates of the Caribbean, The Lord of the Rings, Star Wars, Gladiator, Aliens, Matrix 
+The output should be:
+
+Preorder: Kill Bill Volume 1, Die Hard, Aliens, Gladiator, Pirates of the Caribbean, Matrix, Terminator, Star Wars, The Lord of the Rings, 
+Inorder: Aliens, Die Hard, Gladiator, Kill Bill Volume 1, Matrix, Pirates of the Caribbean, Star Wars, Terminator, The Lord of the Rings, 
+Postorder: Aliens, Gladiator, Die Hard, Matrix, Star Wars, Pirates of the Caribbean, The Lord of the Rings, Terminator, Kill Bill Volume 1, 
