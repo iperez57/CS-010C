@@ -28,7 +28,11 @@ void Tree::insert(const string& data)
         {
             curr = curr->left;
         }
-        else if (curr->large == "" || data < curr->large)
+        else if (curr->large == "")
+        {
+            curr = curr->right;
+        }
+        else if (data < curr->large)
         {
             curr = curr->middle;
         }
