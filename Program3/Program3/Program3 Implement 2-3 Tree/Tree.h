@@ -23,6 +23,7 @@ private:
     void inOrder(Node* subtree) const;
     void postOrder(Node* subtree) const;
     void destroyTree(Node* root);
+    void split(Node* node, const string& data);
 };
 
 #endif
