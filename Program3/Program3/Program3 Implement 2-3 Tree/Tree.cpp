@@ -1,5 +1,10 @@
 #include "Tree.h"
 
+Tree::~Tree()
+{
+    destroyTree(root);
+}
+
 void Tree::preOrder() const
 {
     preOrder(root);
@@ -66,4 +71,18 @@ void Tree::postOrder(Node* node) const
     {
         cout << node->large;
     }
+}
+
+void Tree::destroyTree(Node* node)
+{
+    if (node == nullptr)
+    {
+        return;
+    }
+
+    destroyTree(node->left);
+    destroyTree(node->middle);
+    destroyTree(node->right);
+
+    delete node;
 }
