@@ -19,9 +19,9 @@ public:
 
 private:
     // Add additional functions/variables here
-    void preOrder(Tree* subtree) const;
-    void inOrder(Tree* subtree) const;
-    void postOrder(Tree* subtree) const;
+    void preOrder(Node* subtree) const;
+    void inOrder(Node* subtree) const;
+    void postOrder(Node* subtree) const;
     void destroyTree(Node* root);
 };
 

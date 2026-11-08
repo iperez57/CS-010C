@@ -2,10 +2,10 @@
 
 void Tree::preOrder() const
 {
-    preOrder(node);
+    preOrder(root);
 }
 
-void Tree::preOrder(Tree* node) const
+void Tree::preOrder(Node* node) const
 {
     if (node == nullptr)
     {
@@ -25,10 +25,10 @@ void Tree::preOrder(Tree* node) const
 
 void Tree::inOrder() const
 {
-    inOrder(node);
+    inOrder(root);
 }
 
-void Tree::inOrder(Tree* node) const
+void Tree::inOrder(Node* node) const
 {
     if (node == nullptr)
     {
@@ -47,10 +47,10 @@ void Tree::inOrder(Tree* node) const
 
 void Tree::postOrder() const
 {
-    postOrder(node);
+    postOrder(root);
 }
 
-void Tree::postOrder(Tree* node) const
+void Tree::postOrder(Node* node) const
 {
     if (node == nullptr)
     {
