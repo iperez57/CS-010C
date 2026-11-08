@@ -1,5 +1,10 @@
 #include "Tree.h"
 
+Tree::Tree()
+{
+    root = nullptr;
+}
+
 Tree::~Tree()
 {
     destroyTree(root);
