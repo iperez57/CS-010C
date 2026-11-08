@@ -21,7 +21,8 @@ private:
 public:
     // Add additional functions/variables here. Remember, you may not add any
     // Node * or string variables.
-
+    Node();
+    Node(const string& title1, const string& title2);
 };
 
 #endif
