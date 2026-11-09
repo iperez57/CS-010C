@@ -224,3 +224,33 @@ void Tree::split(Node* node, const string& data)
         delete node;
     }
 }
+
+bool Tree::search(const string& data) const
+{
+    Node* curr = root;
+
+    while (curr != nullptr)
+    {
+        if (data == curr->small || data == curr->large)
+        {
+            return true;
+        }
+        else if (data < curr->small)
+        {
+            curr = curr->left;
+        }
+        else if (curr->large == "")
+        {
+            curr = curr->right;
+        }
+        else if (data < curr->large)
+        {
+            curr = curr->middle;
+        }
+        else
+        {
+            curr = curr->right;
+        }
+    }
+    return false;
+}
