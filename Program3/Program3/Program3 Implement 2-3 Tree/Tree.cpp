@@ -254,3 +254,45 @@ bool Tree::search(const string& data) const
     }
     return false;
 }
+
+void Tree::remove(const string& data)
+{
+    if (root == nullptr)
+    {
+        return;
+    }
+
+    Node* curr = root;
+
+    //search for node
+    if (!search(data))
+    {
+        return;
+    }
+    //data not found
+    if (curr == nullptr)
+    {
+        return;
+    }
+
+    //check if node has two keys
+    if (curr->large != "")
+    {
+        //data to be removed is in small
+        if (data == curr->small)
+        {
+            curr->small = curr->large;
+            curr->large = "";
+        }
+        //data to be removed is in large
+        else
+        {
+            curr->large = "";
+        }
+    }
+    //node has 1 key
+    else
+    {
+        shift(curr, data);
+    }
+}
