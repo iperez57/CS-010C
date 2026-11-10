@@ -216,7 +216,16 @@ void Tree::remove(const string& data)
     //node has 1 key
     else
     {
-        shift(curr, data);
+        //if removed node is the root
+        if (curr == root)
+        {
+            delete root;
+            root = nullptr;
+        }
+        else
+        {
+            shift(curr, data);
+        }
     }
 }
 
