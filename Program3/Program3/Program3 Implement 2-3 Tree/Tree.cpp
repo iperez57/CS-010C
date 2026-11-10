@@ -340,6 +340,7 @@ void Tree::shift(Node* curr, const string& data)
     {
         if (curr == lChild)
         {
+            //remove left child
             if (rChild->large != "")
             {
                 lChild->small = parent->small;
@@ -350,9 +351,35 @@ void Tree::shift(Node* curr, const string& data)
             else
             {
                 parent->large = rChild->small;
+
                 delete lChild;
                 parent->left = nullptr;
+
+                delete rChild;
+                parent->right = nullptr;
+            }
+        }
+        //remove right child
+        else if (curr == rChild)
+        {
+            if (lChild->large != "")
+            {
+                rChild->small = parent->small;
+                parent->small = lChild->small;
+                lChild->small = lChild->large;
+                lChild->large = "";
+            }
+            else
+            {
+                parent->large = parent->small;
+                parent->small = lChild->small;
+
+                delete lChild;
+                parent->left = nullptr;
+
+                delete rChild;
+                parent->right = nullptr;
+
             }
         }
     }
-}
