@@ -19,6 +19,7 @@ void Tree::insert(const string& data)
         return;
     }
 
+    //check for duplicate
     if (search(data))
     {
         return;
@@ -108,11 +109,12 @@ void Tree::inOrder(Node* node) const
     inOrder(node->left);
     cout << node->small << ", ";
     inOrder(node->middle);
+
     if (node->large != "")
     {
         cout << node->large << ", ";
-        inOrder(node->right);
     }
+    inOrder(node->right);
 }
 
 void Tree::postOrder() const
@@ -142,7 +144,6 @@ void Tree::postOrder(Node* node) const
         cout << node->small << ", ";
     }
 }
-
 
 void Tree::destroyTree(Node* node)
 {
@@ -345,6 +346,8 @@ bool Tree::search(const string& data) const
 
 void Tree::shift(Node* curr, const string& data)
 {
+
+
     Node* parent = curr->parent;
     Node* lChild = parent->left;
     Node* rChild = parent->right;
@@ -355,7 +358,6 @@ void Tree::shift(Node* curr, const string& data)
     {
         if (curr == lChild)
         {
-            //remove left child
             if (rChild->large != "")
             {
                 lChild->small = parent->small;
@@ -374,7 +376,6 @@ void Tree::shift(Node* curr, const string& data)
                 parent->right = nullptr;
             }
         }
-        //remove right child
         else if (curr == rChild)
         {
             if (lChild->large != "")
@@ -398,3 +399,4 @@ void Tree::shift(Node* curr, const string& data)
             }
         }
     }
+}
