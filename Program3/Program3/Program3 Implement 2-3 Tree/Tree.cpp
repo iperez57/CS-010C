@@ -19,6 +19,11 @@ void Tree::insert(const string& data)
         return;
     }
 
+    if (search(data))
+    {
+        return;
+    }
+
     Node* curr = root;
 
     //travel to leaf node
