@@ -129,14 +129,20 @@ void Tree::postOrder(Node* node) const
 
     postOrder(node->left);
     postOrder(node->middle);
-    cout << node->small << ", ";
-    postOrder(node->right);
 
     if (node->large != "")
     {
+        cout << node->small << ", ";
+        postOrder(node->right);
         cout << node->large << ", ";
     }
+    else
+    {
+        postOrder(node->right);
+        cout << node->small << ", ";
+    }
 }
+
 
 void Tree::destroyTree(Node* node)
 {
