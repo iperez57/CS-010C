@@ -16,6 +16,7 @@ public:
     void postOrder() const;
     void remove(const string&);
     bool search(const string&) const;
+    void shift(Node* curr, const string& data);
 
 private:
     // Add additional functions/variables here

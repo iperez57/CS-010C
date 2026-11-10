@@ -147,6 +147,74 @@ void Tree::destroyTree(Node* node)
     delete node;
 }
 
+void Tree::remove(const string& data)
+{
+    if (root == nullptr)
+    {
+        return;
+    }
+
+    Node* curr = root;
+
+    //see if node exists
+    if (!search(data))
+    {
+        return;
+    }
+
+    //search node location
+    while (curr != nullptr)
+    {
+        if (data == curr->small || data == curr->large)
+        {
+            break;
+        }
+        else if (data < curr->small)
+        {
+            curr = curr->left;
+        }
+        else if (curr->large == "")
+        {
+            curr = curr->right;
+        }
+        else if (data < curr->large)
+        {
+            curr = curr->middle;
+        }
+        else
+        {
+            curr = curr->right;
+        }
+    }
+
+    //if data does not exist
+    if (curr == nullptr)
+    {
+        return;
+    }
+
+    //check if node has two keys
+    if (curr->large != "")
+    {
+        //data to be removed is in small
+        if (data == curr->small)
+        {
+            curr->small = curr->large;
+            curr->large = "";
+        }
+        //data to be removed is in large
+        else
+        {
+            curr->large = "";
+        }
+    }
+    //node has 1 key
+    else
+    {
+        shift(curr, data);
+    }
+}
+
 void Tree::split(Node* node, const string& data)
 {
     Node* parentN = node->parent;
@@ -255,44 +323,31 @@ bool Tree::search(const string& data) const
     return false;
 }
 
-void Tree::remove(const string& data)
+void Tree::shift(Node* curr, const string& data)
 {
-    if (root == nullptr)
-    {
-        return;
-    }
+    Node* parent = curr->parent;
+    Node* lChild = parent->left;
+    Node* rChild = parent->right;
+    Node* mChild = parent->middle;
 
-    Node* curr = root;
-
-    //search for node
-    if (!search(data))
+    //check if parent is not full
+    if (parent->large == "")
     {
-        return;
-    }
-    //data not found
-    if (curr == nullptr)
-    {
-        return;
-    }
-
-    //check if node has two keys
-    if (curr->large != "")
-    {
-        //data to be removed is in small
-        if (data == curr->small)
+        if (curr == lChild)
         {
-            curr->small = curr->large;
-            curr->large = "";
+            if (rChild->large != "")
+            {
+                lChild->small = parent->small;
+                parent->small = rChild->small;
+                rChild->small = rChild->large;
+                rChild->large = "";
+            }
+            else
+            {
+                parent->large = rChild->small;
+                delete lChild;
+                parent->left = nullptr;
+            }
         }
-        //data to be removed is in large
-        else
-        {
-            curr->large = "";
-        }
-    }
-    //node has 1 key
-    else
-    {
-        shift(curr, data);
     }
 }
