@@ -25,3 +25,13 @@ void Node::setLeft(Node* node)
         node->parent = this;
     }
 }
+
+void Node::setRight(Node* node)
+{
+    this->right = node;
+
+    if (node != nullptr)
+    {
+        node->parent = this;
+    }
+}
