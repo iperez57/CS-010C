@@ -5,7 +5,15 @@
 
 class AVLTree
 {
-
+private:
+    void insert(const string&);
+    int balanceFactor(Node*);
+    void printBalanceFactors();
+public:
+    void rotate(Node*);
+    Node* rotateLeft(Node*);
+    Node* rotateRight(Node*);
+    void printBalanceFactors(Node*);
 };
 
 #endif
