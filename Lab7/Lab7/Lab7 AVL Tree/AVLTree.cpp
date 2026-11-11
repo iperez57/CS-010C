@@ -1,6 +1,39 @@
 #include "AVLTree.h"
 #include <algorithm>
 
+void AVLTree::rotate(Node* node)
+{
+    int bF = balanceFactor(node);
+    int bFL = balanceFactor(node->left);
+    int bFR = balanceFactor(node->right);
+    if (bF == 2)
+    {
+        //left heavy
+        if (bFL == -1)
+        {
+            rotateLeft(node->left);
+            rotateRight(node);
+        }
+        else
+        {
+            rotateRight(node);
+        }
+    }
+    else if (bF == -2)
+    {
+        //right heavy
+        if (bFR == 1)
+        {
+            rotateRight(node->right);
+            rotateLeft(node);
+        }
+        else
+        {
+            rotateLeft(node);
+        }
+    }
+}
+
 void AVLTree::printBalanceFactors(Node* node)
 {
     if (node == nullptr)
