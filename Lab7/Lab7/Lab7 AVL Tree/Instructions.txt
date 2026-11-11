@@ -1,0 +1,21 @@
+Class AVLTree
+The following functions are the minimum requirements for the AVL class. 
+If you'd like, you can add any function from Program 2 to this class. 
+You should modify the BSTree insert function so that the tree remains balanced after each insertion.
+
+Required Public Member Functions
+void insert(const string &): Insert an item to the binary search tree and perform rotation if necessary.
+int balanceFactor(Node*): Return the balance factor of a given node.
+void printBalanceFactors(): Traverse and print the tree in inorder notation. Print the string followed by its balance factor in parentheses followed by a , and one space.
+Strongly Recommended Private Helper Functions
+These helper functions are recommended, but you can change them or add other helper functions if necessary.
+
+rotate: Implement four possible imbalance cases and update the parent of the given node.
+rotateLeft: Rotate the subtree to left at the given node and returns the new subroot.
+rotateRight: Rotate the subtree to right at the given node and returns the new subroot.
+void printBalanceFactors(Node *)
+Strongly Recommended Node Functions
+replaceChild: Replaces this node's child with a new child. Reassigns the parent of the new child respectively.
+setLeft: Links a node as the left child of this node.
+setRight: Links a node as the right child of this node.
+Keep in mind that edge cases will be tested such as inserting a duplicate string should do nothing and reassigning the root when appropriate.
