@@ -14,7 +14,7 @@ public:
     Node* parent;
     Node(string data = 0, Node* parent = nullptr, Node* left = nullptr, Node* right = nullptr) : data(data), parent(parent), left(left), right(right) {}
 
-    void replaceChild(Node*);
+    void replaceChild(Node*, Node*);
     void setLeft(Node*);
     void setRight(Node*);
 };
