@@ -34,6 +34,28 @@ void AVLTree::rotate(Node* node)
     }
 }
 
+Node* AVLTree::rotateLeft(Node* node)
+{
+    Node* parent = node->parent;
+    Node* right = node->right;
+    Node* left = node->right->left;
+
+    right->setLeft(node);
+    node->setRight(left);
+
+    if (node == root)
+    {
+        root = right;
+        right->parent = nullptr;
+    }
+    else
+    {
+        parent->replaceChild(node, right);
+    }
+
+    return right;
+}
+
 void AVLTree::printBalanceFactors(Node* node)
 {
     if (node == nullptr)
