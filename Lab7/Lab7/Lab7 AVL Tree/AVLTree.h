@@ -11,6 +11,8 @@ private:
     void insert(const string&);
     int balanceFactor(Node*);
     void printBalanceFactors();
+    int getHeight(Node*);
+
 public:
     void rotate(Node*);
     Node* rotateLeft(Node*);

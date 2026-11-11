@@ -75,3 +75,16 @@ bool AVLTree::search(Node* curr, const string& data) const
         return search(curr->right, data);
     }
 }
+
+int AVLTree::getHeight(Node* node)
+{
+    if (node == nullptr)
+    {
+        return -1;
+    }
+
+    int leftHeight = getHeight(node->left);
+    int rightHeight = getHeight(node->right);
+
+    return max(leftHeight, rightHeight) + 1;
+}
