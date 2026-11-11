@@ -12,6 +12,16 @@ void Node::replaceChild(Node* oldNode, Node* newNode)
     }
     if (newNode != nullptr)
     {
-        new->parent = this;
+        newNode->parent = this;
+    }
+}
+
+void Node::setLeft(Node* node)
+{
+    this->left = node;
+
+    if (node != nullptr)
+    {
+        node->parent = this;
     }
 }
