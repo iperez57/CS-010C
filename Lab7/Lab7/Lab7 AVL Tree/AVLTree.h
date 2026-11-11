@@ -6,6 +6,8 @@
 class AVLTree
 {
 private:
+    Node* root = nullptr;
+
     void insert(const string&);
     int balanceFactor(Node*);
     void printBalanceFactors();
