@@ -54,6 +54,18 @@ void AVLTree::insert(const string& data)
     }
 }
 
+int AVLTree::balanceFactor(Node* node)
+{
+    if (node == nullptr)
+    {
+        return 0;
+    }
+    int leftHeight = getHeight(node->left);
+    int rightHeight = getHeight(node->right);
+
+    return leftHeight - rightHeight;
+}
+
 
 bool AVLTree::search(Node* curr, const string& data) const
 {
