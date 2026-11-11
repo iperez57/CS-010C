@@ -14,6 +14,7 @@ public:
     Node* rotateLeft(Node*);
     Node* rotateRight(Node*);
     void printBalanceFactors(Node*);
+    bool search(Node*, const string&) const;
 };
 
 #endif
