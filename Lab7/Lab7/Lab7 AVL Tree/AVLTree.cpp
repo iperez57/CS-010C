@@ -1,4 +1,30 @@
 #include "AVLTree.h"
+#include <algorithm>
+
+void AVLTree::printBalanceFactors(Node* node)
+{
+    if (node == nullptr)
+    {
+        return;
+    }
+
+    printBalanceFactors(node->left);
+    cout << node->data << "(" << balanceFactor(node) << "), ";
+    printBalanceFactors(node->right);
+}
+
+int AVLTree::getHeight(Node* node)
+{
+    if (node == nullptr)
+    {
+        return -1;
+    }
+
+    int leftHeight = getHeight(node->left);
+    int rightHeight = getHeight(node->right);
+
+    return max(leftHeight, rightHeight) + 1;
+}
 
 void AVLTree::insert(const string& data)
 {
@@ -66,6 +92,10 @@ int AVLTree::balanceFactor(Node* node)
     return leftHeight - rightHeight;
 }
 
+void AVLTree::printBalanceFactors()
+{
+    printBalanceFactors(root);
+}
 
 bool AVLTree::search(Node* curr, const string& data) const
 {
@@ -86,17 +116,4 @@ bool AVLTree::search(Node* curr, const string& data) const
     {
         return search(curr->right, data);
     }
-}
-
-int AVLTree::getHeight(Node* node)
-{
-    if (node == nullptr)
-    {
-        return -1;
-    }
-
-    int leftHeight = getHeight(node->left);
-    int rightHeight = getHeight(node->right);
-
-    return max(leftHeight, rightHeight) + 1;
 }
